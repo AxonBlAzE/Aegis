@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Display from "./Display";
 import Welcome from "./Welcome";
+import { start } from "./YoutubeDownload"; 
+
 
 const Download = () => {
 
@@ -34,16 +36,36 @@ const Download = () => {
         }
     }
 
-    const handleSearch = (e) => {
+    const handleDownload = (e) => {
         e.preventDefault();
-        setLink(e.target.value);
+        let serverURL = 'http://localhost:4000';
+        console.log("get link");
+        console.log("link:"+link);
+        async function downloadMp4(link) {
+            const res = await fetch(`${serverURL}/downloadmp4?url=${link}`);
+            if(res.status == 200) {
+                var a = document.createElement('a');
+                  a.href = `${serverURL}/downloadmp4?url=${link}`;
+                  a.setAttribute('download', '');
+                a.click();
+            } else if(res.status == 400) {
+                alert('Invalid url');
+            }
+        }
+        if(media === "Youtube") {
+            downloadMp4(link);
+        } else if(media === "Spotify") {
+            console.log("spotify");
+        } else if(media === "SoundCloud") {
+            console.log("soundcloud");
+        }
     }
-        
+
     return ( 
         <div className="download">
             <div className="search-bar">
                 <Welcome />
-                <form onSubmit={handleSearch}>
+                <form onSubmit={handleDownload}>
                     <div className="inner-form">
                         <div className="input-field first-wrap">
                             <div className="input-select">
@@ -64,15 +86,15 @@ const Download = () => {
                             }}/>
                         </div>
                         <div className="input-field third-wrap">
-                            <button className="btn-search" type="button" style={{
+                            <button className="btn-search" type="submit" style={{
                                 backgroundColor: btnColor,
                                 height: '68px',
-                            }}>Search</button>
+                            }} >Search</button>
                         </div>
                     </div>
                 </form>
                 <br />
-                {link && <Display link={link} media={media}/>}
+                {/* {link && <Display link={link} media={media}/>} */}
             </div>
         </div>
      );
