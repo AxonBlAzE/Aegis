@@ -290,3 +290,41 @@
   margin-bottom: 20px;
   color: #d88211;
 }
+
+/* explore */
+.explore {
+  min-height: 100vh;
+  /* display: -ms-flexbox;
+  display: flex; */
+  font-family: 'Poppins', sans-serif;
+  background: url("./images/bg.png");
+  background-size: cover;
+  background-position: center center;
+  padding: 15px;
+}
+
+.list{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-bottom: 20px;
+  
+} 
+
+.media-nav{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-bottom: 20px;
+}
+
